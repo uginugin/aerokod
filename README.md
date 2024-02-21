@@ -54,6 +54,7 @@ make stop
 npm run lint
 ```
 **Все проверки линтера проходят успешно**
+
 2) из папки ***frontend*** выполняются команды:
 ```php
 npm run build && npm run start
