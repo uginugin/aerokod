@@ -55,12 +55,8 @@ RUN apt-get install -y \
         zip \
   && docker-php-ext-install zip
 
-COPY docker/horizon.conf /etc/supervisor/conf.d/horizon.conf
 
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
-
-# Setup cron job
-RUN (crontab -l ; echo "* * * * * root cd /var/www/laravel && php artisan schedule:run >> /dev/null 2>&1") | crontab
 
 WORKDIR /var/www

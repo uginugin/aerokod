@@ -33,9 +33,15 @@ make init
 ```php
 make up
 ```
+Потом вызываем команду
+```php
+make init
+```
 Адрес бекенда
 [http://localhost:8083/](http://localhost:8083/)
 
+Документация апи
+[http://localhost:8083/api/documentation](http://localhost:8083/api/documentation)
 2) Из папки ***frontend*** вызываем команды:
 ```php
 npm i && npm run dev

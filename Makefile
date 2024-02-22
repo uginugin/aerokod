@@ -3,7 +3,7 @@ up:
 stop:
 	docker-compose stop
 
-init: up app-grant-write-permission setting-env app-composer-install app-migrations app-storage-link app-swagger app-generate-swagger
+init: up app-grant-write-permission setting-env app-composer-install app-migrations app-storage-link app-swagger app-generate-swagger app-seeders
 
 swagger: app-generate-swagger
 
