@@ -11,8 +11,9 @@ class FlatFilter extends Filter
 {
     protected int $perPage = 6;
 
-    public function buildFilters(): array
+    public function buildFilters(int $deep = 0): array
     {
+        $deep++;
         $filters = [];
         $notEmptyValues = null;
         $isFail = false;
@@ -33,6 +34,16 @@ class FlatFilter extends Filter
                 'disabled'  => true,
             ];
         }
+
+        Flat::query()
+            ->selectRaw('min(price) as min, max(price) as max, min(square) as min_square, max(square) as max_square')
+            ->get()
+            ->map(function ($item) use (&$filters) {
+                $filters['price']['min_range'] = (double)$item->min;
+                $filters['price']['max_range'] = (double)$item->max;
+                $filters['square']['min_range'] = (double)$item->min_square;
+                $filters['square']['max_range'] = (double)$item->max_square;
+            });
 
         $this->relationFilters(['projects' => true]);
 
@@ -74,10 +85,9 @@ class FlatFilter extends Filter
 
         if (empty($filters['square']['min'])) {
             $isFail = true;
+            unset($this->filter['square']);
         } else {
-            $notEmptyValues = [
-                'square' => $filters['square'],
-            ];
+            $notEmptyValues['square'] = $filters['square'];
         }
 
         $this->query = $this->model::query();
@@ -118,17 +128,18 @@ class FlatFilter extends Filter
 
         if (empty($filters['price']['min'])) {
             $isFail = true;
+            unset($this->filter['price']);
         } else {
-            $notEmptyValues = [
-                'price' => $filters['price'],
-            ];
+            $notEmptyValues['price'] = $filters['price'];
         }
 
         $this->query = $this->model::query();
 
-        if ($isFail && ! empty($notEmptyValues)) {
-            $this->filter[array_key_first($notEmptyValues)] = $notEmptyValues[array_key_first($notEmptyValues)];
-            return $this->buildFilters();
+        if ($isFail && ! empty($notEmptyValues) && $deep != 3) {
+            foreach ($notEmptyValues as $key => $notEmptyValue) {
+                $this->filter[$key] = $notEmptyValue;
+            }
+            return $this->buildFilters($deep);
         }
 
         return $filters;
