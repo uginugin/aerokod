@@ -23,11 +23,11 @@ class FlatFactory extends Factory
             'project_id'    => $project->id,
             'rooms'         => $rooms,
             'studio'        => $is_studio,
-            'price'         => $this->faker->randomNumber(),
-            'old_price'     => $this->faker->randomNumber(),
-            'square'        => $this->faker->randomFloat(),
+            'price'         => rand(2000000, 15000000),
+            'old_price'     => rand(2000000, 15000000),
+            'square'        => rand(20, 100),
             'release_dates' => '3кв. 2026',
-            'floor'         => $this->faker->randomNumber(),
+            'floor'         => rand(1, 25),
             'image'         => $this->faker->imageUrl,
         ];
     }
