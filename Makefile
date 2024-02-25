@@ -14,7 +14,6 @@ app-composer-install:
 
 setting-env:
 	cp frontend/.env.example frontend/.env
-	cp admin/.env.example admin/.env
 
 app-migrations:
 	docker-compose run --rm laravel php artisan migrate --force
@@ -33,4 +32,3 @@ app-storage-link:
 
 app-grant-write-permission:
 	docker-compose run --rm laravel chmod -R 777 ./
-	docker-compose run --rm front chmod -R 777 ./
