@@ -49,12 +49,14 @@ make up
 
 Документация апи
 [http://localhost:8083/api/documentation](http://localhost:8083/api/documentation)
+
 2) Из папки ***frontend*** вызываем команды:
 ```php
 npm i && npm run dev
 ```
 Проект откроется по адресу
 [http://localhost:3000/](http://localhost:3000/)
+
 3) Для того чтобы остановить контейнеры Docker из папки проекта вызываем команду:
 ```php
 make stop
