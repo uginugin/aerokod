@@ -1,4 +1,3 @@
-import { Provider } from 'react-redux';
 import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
 
@@ -7,7 +6,7 @@ const App = ({
   pageProps,
 }: AppProps) => (
 
-    <Component {...pageProps} />
+  <Component {...pageProps} />
 );
 
 export default App;

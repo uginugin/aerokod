@@ -1,7 +1,12 @@
 import { NextPage } from 'next';
+
 const HomePage: NextPage = () => (
   <h1>
-    Тестовое задание "Dynamic-Filter"
+    Тестовое задание
+    {' '}
+    <span className="text-blue">
+      Dynamic-Filter
+    </span>
   </h1>
 );
 
