@@ -23,8 +23,8 @@
 ***
 <h3>Необходимые материалы</h3>
 
-1) [Макет в фигме]()
-2) [Документация по api]()
+1) [Макет в фигме](https://www.figma.com/file/KS3E1LkarFwFQD90K1BUGN/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-(Frontend)?type=design&node-id=4-229&mode=design&t=30jNLqdVcubjNOxp-0)
+2) [Документация по api](http://localhost:8083/)
 **Будет доступна после установки проекта**
 ***
 <h3>Инструкция по установке проекта:</h3>
