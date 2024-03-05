@@ -15,7 +15,7 @@ use OpenApi\Annotations as OA;
  *
  *  @OA\Server(
  *      description="TestAPI",
- *      url="http://localhost:8083/api/"
+ *      url="http://localhost:8083/"
  *  ),
  */
 class Controller extends BaseController
