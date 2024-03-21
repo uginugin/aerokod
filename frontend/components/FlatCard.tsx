@@ -2,7 +2,7 @@ import { FC } from 'react';
 import likeIcon from '@/assets/likeIcon.svg';
 import Image from 'next/image';
 import type { TFetchedFlats } from '@/types/fetchedFlats';
-import { formatToSplitedDigitWithComma } from '@/Utils/formatting';
+import { formatToSplitedDigitWithComma } from '@/utils/formatting';
 import CircleButton from './CircleButton';
 
 type Props = TFetchedFlats[number];

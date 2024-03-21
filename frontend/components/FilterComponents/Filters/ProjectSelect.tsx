@@ -2,7 +2,7 @@ import { useState, type FC } from 'react';
 import Image from 'next/image';
 import downArrow from '@/assets/downArrow.svg';
 import type { TFetchedFilters } from '@/types/fetchedFilters';
-import useQueryParams from '@/Hooks/useQueryParams';
+import useQueryParams from '@/hooks/useQueryParams';
 import FilterWrapper from '../FilterWrapper';
 
 type Props = {

@@ -4,14 +4,14 @@ import {
   useEffect, useLayoutEffect, useRef, useState,
 } from 'react';
 import AllFilters from '@/components/FilterComponents/AllFilters';
-import useWindowSize from '@/Hooks/useWindowSize';
-import { fetchfromApi } from '@/Utils/api';
+import useWindowSize from '@/hooks/useWindowSize';
+import { fetchfromApi } from '@/utils/api';
 import type { TFetchedFilters } from '@/types/fetchedFilters';
 import type { TFetchedFlats } from '@/types/fetchedFlats';
 import _ from 'lodash';
 import BlueMobileButton from '@/components/BlueMobileButton';
 import FlatCard from '@/components/FlatCard';
-import useQueryParams from '@/Hooks/useQueryParams';
+import useQueryParams from '@/hooks/useQueryParams';
 import ClipLoader from 'react-spinners/ClipLoader';
 import resetFilters from '@/assets/resetFilters.svg';
 import Image from 'next/image';

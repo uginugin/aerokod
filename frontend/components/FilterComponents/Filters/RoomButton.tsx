@@ -1,6 +1,6 @@
 import { useState, type FC, useEffect } from 'react';
 import type { TFetchedFilters } from '@/types/fetchedFilters';
-import useQuery from '@/Hooks/useQueryParams';
+import useQuery from '@/hooks/useQueryParams';
 
 type Props = {
   data: TFetchedFilters['rooms'][number]

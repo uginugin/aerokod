@@ -2,9 +2,9 @@
 import {
   useState, type ChangeEvent, type FC, useEffect, useRef,
 } from 'react';
-import useQueryParams from '@/Hooks/useQueryParams';
+import useQueryParams from '@/hooks/useQueryParams';
 import _ from 'lodash';
-import { formatToSplitedDigitWithComma } from '@/Utils/formatting';
+import { formatToSplitedDigitWithComma } from '@/utils/formatting';
 import FilterWrapper from '../../FilterWrapper';
 import RangeSlider from './RangeSlider/RangeSlider';
 
