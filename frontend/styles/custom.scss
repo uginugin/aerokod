@@ -1,0 +1,41 @@
+@tailwind components;
+
+$color: #040306;
+
+@layer components {
+  .brdr {
+    @apply border-black border-[0.58px] rounded-[10px]
+  }
+
+  .filter {
+    @apply flex gap-[21px] xl:gap-[15px] 2xl:gap-[21px]
+  }
+
+  .filter-padding {
+    @apply px-3 2xl:px-5
+  }
+  
+  // классы с текстом названы по размеру текста в пикселях 
+  // на мобильном макете (width 375px), т.к. mobile-first
+  // какая логика в globals.scss - я не понимаю.
+  // почему для жирного и полужирного отдельные классы?
+
+  // я декорирую текст и задаю тип шрифта непосредственно в компонентах,
+  // здесь только адаптивные размеры 
+
+  .t_25 {
+    @apply text-2xl lg:text-5xl xl:text-7xl 2xl:text-9xl
+  }
+
+  .t_18 {
+    @apply text-md lg:text-2xl
+  }
+
+  .t_14 {
+    @apply text-xs 2xl:text-lg
+  }
+
+  .t_12 {
+    @apply text-2xxs sm:text-xs xl:text-sm 2xl:text-md
+  }
+}
