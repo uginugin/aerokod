@@ -42,14 +42,6 @@ const HomePage: NextPage = () => {
   // (например обновлять фильтры при смене страницы итд)
   const pageChanged = useRef(false);
 
-  // чтобы страничка "не скроллилась" вверх при изменении query параметров
-  useLayoutEffect(() => {
-    window.scrollTo(scrollCoords.current.x, scrollCoords.current.y);
-    return () => {
-      scrollCoords.current = { x: window.scrollX, y: window.scrollY };
-    };
-  }, [searchParams]);
-
   const fetchFlats = (url: string) => new Promise<void>((resolve) => {
     fetchfromApi(url)
       .then((res: {
@@ -78,18 +70,32 @@ const HomePage: NextPage = () => {
         resolve();
       });
   });
+  const fetchFilters = () => {
+    fetchfromApi(`/filters?${searchParams}`)
+      .then((res: { data: TFetchedFilters }) => {
+        setFetchedFilters(res.data);
+      });
+  };
+
+  const debouncedUpdate = _.debounce(async () => {
+    if (!pageChanged.current) {
+      fetchFilters();
+    }
+    fetchFlats(`/flats?${searchParams}`);
+  }, 700);
+
+  // чтобы страничка "не скроллилась" вверх при изменении query параметров
+  useLayoutEffect(() => {
+    window.scrollTo(scrollCoords.current.x, scrollCoords.current.y);
+    return () => {
+      scrollCoords.current = { x: window.scrollX, y: window.scrollY };
+    };
+  }, [searchParams]);
 
   useEffect(() => {
-    const debouncedUpdate = _.debounce(async () => {
-      if (!pageChanged.current) {
-        fetchfromApi(`/filters?${searchParams}`)
-          .then((res: { data: TFetchedFilters }) => {
-            setFetchedFilters(res.data);
-          });
-      }
-      if (firstRender) {
-        // если мы рендерим страничку впервые и указан параметр странички,
-        // то каждая страничка подгрузится
+    if (firstRender) {
+      fetchFilters();
+      (async () => {
         const newSearchParams = new URLSearchParams(searchParams.toString());
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < (Number(searchParams.get('page')) || 1); i++) {
@@ -100,12 +106,10 @@ const HomePage: NextPage = () => {
         }
         pageChanged.current = false;
         setFirstRender(false);
-      } else {
-        fetchFlats(`/flats?${searchParams}`);
-      }
-    }, 500);
-
-    debouncedUpdate();
+      })();
+    } else {
+      debouncedUpdate();
+    }
 
     return () => debouncedUpdate.cancel();
   }, [searchParams]);

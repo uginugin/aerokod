@@ -69,12 +69,11 @@ const RangeSliderWithInputs: FC<Props> = ({
       // то API вернет ошибку
       // из-за этого не можем корректно подстраивать ползунки в фильтре
       // цены и площади, т.к. всегда нужно хранить минимальный стейт,
-      // если выставлен максимальный
+      // если выставлен максимальный. Значения могут иногда "сами выставляться"
       if (textValue.max || textValue.min) {
         addParameter(minQueryParamName, value.min.toString());
         addParameter(maxQueryParamName, value.max.toString());
       }
-
       updateURL();
     }, 1000);
     if (!firstRender.current) {
